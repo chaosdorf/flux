@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: netbox
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+  chart:
+    spec:
+      chart: netbox
+      sourceRef:
+        kind: HelmRepository
+        name: chaosdorf
+  values:
+    image:
+      repository: quay.io/chaosdorf/netbox
+    plugins: ['netbox_secretstore']
