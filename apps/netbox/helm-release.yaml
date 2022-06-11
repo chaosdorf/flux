@@ -15,4 +15,5 @@ spec:
   values:
     image:
       repository: quay.io/chaosdorf/netbox
-    plugins: ['netbox_secretstore']
+    plugins: 
+      - netbox_secretstore
