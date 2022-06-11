@@ -8,7 +8,7 @@ spec:
     createNamespace: false
   chart:
     spec:
-      chart: secret-generator
+      chart: kubernetes-secret-generator
       sourceRef:
         kind: HelmRepository
         name: mittwald
