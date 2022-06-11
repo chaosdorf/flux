@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: chaosdorf
+spec:
+  url: https://chaosdorf.github.io/helm-charts
+  interval: 1h
