@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: secret-generator
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+  chart:
+    spec:
+      chart: secret-generator
+      sourceRef:
+        kind: HelmRepository
+        name: mittwald

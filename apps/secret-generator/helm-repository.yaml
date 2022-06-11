@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: mittwald
+spec:
+  url: https://helm.mittwald.de
+  interval: 1h
