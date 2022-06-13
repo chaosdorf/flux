@@ -4,6 +4,10 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
+    email: account+letsencrypt@chaosdorf.de
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: example-issuer-account-key
     solvers:
     - dns01:
         cloudflare:
