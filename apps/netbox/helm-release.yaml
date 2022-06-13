@@ -24,7 +24,9 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
         traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
-      - netbox.apps.chaosdorf.space
+      - host: netbox.apps.chaosdorf.space
+        paths:
+        - /
       tls:
       - secretName: netbox-tls
         hosts:
