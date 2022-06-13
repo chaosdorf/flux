@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: cert-manager
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+      interval: 1h
+  values:
+    installCRDs: true

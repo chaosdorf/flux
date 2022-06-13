@@ -4,3 +4,4 @@ resources:
   - prometheus
   - netbox
   - secret-generator
+  - cert-manager
