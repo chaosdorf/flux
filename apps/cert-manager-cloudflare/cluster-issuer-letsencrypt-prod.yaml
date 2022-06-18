@@ -17,4 +17,4 @@ spec:
             key: apikey
       selector:
         dnsZones:
-        - 'apps.chaosdorf.space'
+        - chaosdorf.space
