@@ -5,3 +5,4 @@ resources:
   - netbox
   - secret-generator
   - cert-manager
+  - cert-manager-cloudflare
