@@ -12,7 +12,7 @@ spec:
     - dns01:
         cloudflare:
           email: account+cloudflare@chaosdorf.de
-          apiKeySecretRef:
+          apiTokenSecretRef:
             name: cloudflare-apikey-secret
             key: apikey
       selector:
