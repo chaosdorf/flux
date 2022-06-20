@@ -6,3 +6,4 @@ resources:
   - secret-generator
   - cert-manager
   - cert-manager-cloudflare
+  - metallb

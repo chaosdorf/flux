@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: metallb
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+  chart:
+    spec:
+      chart: metallb
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+  values:
+    configInline: |
+      address-pools:
+        - name: default
+          protocol: layer2
+          addresses:
+            - 10.7.42.0/24
+            - fd00:1337:cafe:7:4200::/72
