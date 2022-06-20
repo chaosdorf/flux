@@ -18,5 +18,5 @@ spec:
         - name: default
           protocol: layer2
           addresses:
-            - 10.7.42.1-10.7.42.254
-            - fd00:1337:cafe:7:4200::1-fd00:1337:cafe:7:4200::ff
+            - 10.7.42.0/24
+            - fd00:1337:cafe:7:4200::/72
