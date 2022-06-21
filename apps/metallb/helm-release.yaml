@@ -19,4 +19,4 @@ spec:
           protocol: layer2
           addresses:
             - 10.7.42.0/24
-            - fd00:1337:cafe:7:4200::/72
+            - fd00:7:42::/64
