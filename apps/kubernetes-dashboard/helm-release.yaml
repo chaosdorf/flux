@@ -12,17 +12,30 @@ spec:
         name: kubernetes-dashboard
       interval: 1h
   values:
+    extraArgs:
+      - --enable-skip-login 
+      - --enable-insecure-login
+    protocolHttp: true
+    service:
+      externalPort: 80
     ingress:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
         traefik.ingress.kubernetes.io/router.tls: "true"
-      paths:
-        - /
       hosts:
         - kubernetes.apps.chaosdorf.space
       tls:
-      - secretName: netbox-tls
-        hosts:
-        - kubernetes.apps.chaosdorf.space
+        - secretName: netbox-tls
+          hosts:
+          - kubernetes.apps.chaosdorf.space
+      customPaths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: >-
+                {{ include "kubernetes-dashboard.fullname" . }}
+              port:
+                name: http  

@@ -6,4 +6,3 @@ resources:
 - helm-release.yaml
 - helm-repository.yaml
 - namespace.yaml
-- serviceaccount.yaml
