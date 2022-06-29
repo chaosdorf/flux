@@ -27,7 +27,7 @@ spec:
       hosts:
         - kubernetes.apps.chaosdorf.space
       tls:
-        - secretName: netbox-tls
+        - secretName: kubernetes-dashboard-tls
           hosts:
           - kubernetes.apps.chaosdorf.space
       customPaths:
