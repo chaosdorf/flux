@@ -7,3 +7,4 @@ resources:
   - cert-manager
   - cert-manager-cloudflare
   - metallb
+  - kubernetes-dashboard
