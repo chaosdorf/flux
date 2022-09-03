@@ -8,7 +8,7 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: main
+    branch: move-files
   secretRef:
     name: flux-system
   url: ssh://git@github.com/chaosdorf/flux
@@ -17,6 +17,32 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: flux-system
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./flux-system
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: infra
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./infra
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: apps
   namespace: flux-system
 spec:
   interval: 10m0s
