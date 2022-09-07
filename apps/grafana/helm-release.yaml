@@ -34,3 +34,6 @@ spec:
         org_role: Admin
       auth:
         disable_login_form: true
+    sidecar:
+      datasources:
+        enabled: true
