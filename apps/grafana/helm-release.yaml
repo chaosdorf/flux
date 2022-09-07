@@ -35,5 +35,7 @@ spec:
       auth:
         disable_login_form: true
     sidecar:
+      dashboards:
+        enabled: true
       datasources:
         enabled: true
