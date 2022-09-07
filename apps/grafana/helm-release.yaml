@@ -27,3 +27,10 @@ spec:
       - secretName: grafana-tls
         hosts:
         - grafana.apps.chaosdorf.space
+    grafana.ini:
+      auth.anonymous:
+        enabled: true
+        org_name: Main Org.
+        org_role: Admin
+      auth:
+        disable_login_form: true
