@@ -37,5 +37,7 @@ spec:
     sidecar:
       dashboards:
         enabled: true
+        provider:
+          disableDelete: true
       datasources:
         enabled: true
