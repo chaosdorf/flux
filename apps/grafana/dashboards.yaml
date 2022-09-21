@@ -4,7 +4,7 @@ kind: GitRepository
 metadata:
   name: grafana-dashboards-kubernetes
 spec:
-  interval: 1m0s
+  interval: 1h
   ref:
     branch: master
   url: https://github.com/dotdc/grafana-dashboards-kubernetes.git
