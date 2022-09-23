@@ -15,3 +15,14 @@ spec:
   values:
     grafana:
       enabled: false
+    prometheus:
+      prometheusSpec:
+        replicas: 3
+        retention: 14d
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              resources:
+                requests:
+                  storage: 1Gi
