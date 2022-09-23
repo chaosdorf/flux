@@ -17,6 +17,7 @@ spec:
       enabled: false
     prometheus:
       prometheusSpec:
+        podAntiAffinity: hard
         replicas: 3
         retention: 14d
         storageSpec:
