@@ -10,5 +10,8 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: ping-exporter
-        namespace: flux-system
   interval: 1h
+  values:
+    image:
+      repository: czerwonk/ping_exporter
+      tag: v1.0.0
