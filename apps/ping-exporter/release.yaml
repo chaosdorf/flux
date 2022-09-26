@@ -11,3 +11,7 @@ spec:
         kind: HelmRepository
         name: ping-exporter
   interval: 1h
+  values:
+    image:
+      repository: czerwonk/ping_exporter
+      tag: v1.0.0
