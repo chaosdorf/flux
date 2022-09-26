@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ping-exporter
+spec:
+  releaseName: ping-exporter
+  chart:
+    spec:
+      chart: ping-exporter
+      sourceRef:
+        kind: HelmRepository
+        name: ping-exporter
+        namespace: flux-system
+  interval: 1h
