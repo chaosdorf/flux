@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ping-exporter
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ping-exporter
+  endpoints:
+  - port: http
+    interval: 5s

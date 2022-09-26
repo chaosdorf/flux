@@ -5,4 +5,5 @@ resources:
   - grafana
   - kubernetes-dashboard
   - netbox
+  - ping-exporter
   - prometheus
