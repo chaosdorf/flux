@@ -8,3 +8,4 @@ resources:
   - cert-manager-cloudflare
   - metallb
   - kubernetes-dashboard
+  - minio
