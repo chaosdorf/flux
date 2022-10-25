@@ -7,3 +7,4 @@ resources:
   - netbox
   - ping-exporter
   - prometheus
+  - snmp-exporter
