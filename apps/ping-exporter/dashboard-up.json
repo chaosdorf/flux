@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 10,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -95,7 +94,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.7",
+      "pluginVersion": "9.2.2",
       "targets": [
         {
           "datasource": {
@@ -104,7 +103,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "1 - round(ping_loss_ratio{ip=\"8.8.8.8\"})",
+          "expr": "max(1 - round(ping_loss_ratio{ip=\"8.8.8.8\"}))",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -130,6 +129,6 @@
   "timezone": "",
   "title": "Internet up?",
   "uid": "NOGhil44k",
-  "version": 4,
+  "version": 1,
   "weekStart": ""
 }
