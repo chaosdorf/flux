@@ -6,3 +6,11 @@ resources:
   - helm-repository.yaml
   - namespace.yaml
   - servicemonitor.yaml
+configMapGenerator:
+  - name: dashboard-up
+    files:
+      - dashboard-up.json
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "true"
