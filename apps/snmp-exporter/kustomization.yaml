@@ -5,3 +5,11 @@ resources:
  - helm-release.yaml
  - helm-repository.yaml
  - namespace.yaml
+configMapGenerator:
+  - name: dashboard-snmp
+    files:
+      - dashboard-snmp.json
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "true"
