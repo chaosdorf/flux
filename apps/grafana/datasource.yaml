@@ -1,11 +1,12 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-datasource-prometheus
   labels:
-    grafana_datasource: "true"
+    grafana_datasource: 'true'
 data:
-  datasource-prometheus.yaml: |
+  datasource-prometheus.yaml: |-
     apiVersion: 1
     datasources:
     - name: Prometheus

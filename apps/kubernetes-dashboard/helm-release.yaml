@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -13,7 +14,7 @@ spec:
       interval: 1h
   values:
     extraArgs:
-      - --enable-skip-login 
+      - --enable-skip-login
       - --enable-insecure-login
     protocolHttp: true
     service:
@@ -23,13 +24,13 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
-        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls: 'true'
       hosts:
         - kubernetes.apps.chaosdorf.space
       tls:
         - secretName: kubernetes-dashboard-tls
           hosts:
-          - kubernetes.apps.chaosdorf.space
+            - kubernetes.apps.chaosdorf.space
       customPaths:
         - path: /
           pathType: ImplementationSpecific
@@ -38,4 +39,4 @@ spec:
               name: >-
                 {{ include "kubernetes-dashboard.fullname" . }}
               port:
-                name: http  
+                name: http

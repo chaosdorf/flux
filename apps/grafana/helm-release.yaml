@@ -1,3 +1,4 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -20,13 +21,13 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
-        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls: 'true'
       hosts:
-      - grafana.apps.chaosdorf.space
-      tls:
-      - secretName: grafana-tls
-        hosts:
         - grafana.apps.chaosdorf.space
+      tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana.apps.chaosdorf.space
     grafana.ini:
       auth.anonymous:
         enabled: true
