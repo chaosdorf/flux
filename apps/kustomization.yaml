@@ -4,6 +4,7 @@ resources:
   - cert-manager-cloudflare
   - grafana
   - kubernetes-dashboard
+  - labello
   - netbox
   - ping-exporter
   - prometheus
