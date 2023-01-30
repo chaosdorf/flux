@@ -15,17 +15,17 @@ spec:
         app: labello
     spec:
       containers:
-      - name: labello
-        image: chaosdorf/labello:latest
-        env:
-          - name: PRINTER_HOST
-            value: 10.2.7.1
-        resources:
-          limits:
-            cpu: '0.50'
-            memory: 128M
-          requests:
-            cpu: '0.125'
-            memory: 16M
-        ports:
-        - containerPort: 8000
+        - name: labello
+          image: chaosdorf/labello:latest
+          env:
+            - name: PRINTER_HOST
+              value: 10.2.7.1
+          resources:
+            limits:
+              cpu: '0.50'
+              memory: 128M
+            requests:
+              cpu: '0.125'
+              memory: 16M
+          ports:
+            - containerPort: 8000
