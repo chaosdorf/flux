@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: labello
-          image: chaosdorf/labello:v0.1.1
+          image: chaosdorf/labello:0.1.1
           env:
             - name: PRINTER_HOST
               value: 10.2.7.1
