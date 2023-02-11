@@ -6,11 +6,11 @@ spec:
   ingressClassName: nginx
   rules:
     - http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: labello
-              port:
-                number: 80
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: labello
+                port:
+                  number: 80
