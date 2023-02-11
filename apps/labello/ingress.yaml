@@ -5,6 +5,7 @@ metadata:
 spec:
   rules:
     - http:
+        host: labello.apps.chaosdorf.space
         paths:
           - path: /
             pathType: Prefix
