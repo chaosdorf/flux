@@ -12,11 +12,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: bitnami
-  values:
-    configInline: |
-      address-pools:
-        - name: default
-          protocol: layer2
-          addresses:
-            - 10.7.42.0/24
-            - fd00:7:0:42::/64
