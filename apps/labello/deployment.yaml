@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: labello
+  labels:
+    app: labello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: labello
+  template:
+    metadata:
+      labels:
+        app: labello
+    spec:
+      containers:
+        - name: labello
+          image: chaosdorf/labello:0.1.1
+          env:
+            - name: PRINTER_HOST
+              value: 10.2.7.1
+          resources:
+            limits:
+              cpu: '0.50'
+              memory: 128M
+            requests:
+              cpu: '0.125'
+              memory: 16M
+          ports:
+            - containerPort: 8000
