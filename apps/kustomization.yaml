@@ -9,5 +9,4 @@ resources:
   - netbox
   - ping-exporter
   - prometheus
-  - promtail
   - snmp-exporter
