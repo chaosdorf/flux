@@ -22,11 +22,11 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
         traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
-      - grafana.apps.chaosdorf.space
+      - grafana.chaosdorf.space
       tls:
       - secretName: grafana-tls
         hosts:
-        - grafana.apps.chaosdorf.space
+        - grafana.chaosdorf.space
     grafana.ini:
       auth.anonymous:
         enabled: true
