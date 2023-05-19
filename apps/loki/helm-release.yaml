@@ -15,5 +15,5 @@ spec:
         name: grafana
   values:
     loki:
-      url: http://loki.loki:3100
-      isDefault: false
+      url: http://loki.loki:3100 # Grafana datasource to connect to
+      isDefault: false # Grafana datasource should not be default
