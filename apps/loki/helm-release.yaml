@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+  chart:
+    spec:
+      chart: loki-stack
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  values:
+    loki:
+      url: http://loki.loki:3100 # Grafana datasource to connect to
+      isDefault: false # Grafana datasource should not be default
