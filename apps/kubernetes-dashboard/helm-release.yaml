@@ -25,11 +25,11 @@ spec:
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
         traefik.ingress.kubernetes.io/router.tls: "true"
       hosts:
-        - kubernetes.apps.chaosdorf.space
+        - kubernetes.chaosdorf.space
       tls:
         - secretName: kubernetes-dashboard-tls
           hosts:
-          - kubernetes.apps.chaosdorf.space
+          - kubernetes.chaosdorf.space
       customPaths:
         - path: /
           pathType: ImplementationSpecific
