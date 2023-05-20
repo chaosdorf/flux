@@ -13,3 +13,7 @@ data:
       url: http://prometheus-kube-prometheus-prometheus.prometheus:9090
       access: proxy
       isDefault: true
+    - name: MQTT
+      type: grafana-mqtt-datasource
+      url: tcp://mqtt.chaosdorf.space:1883
+      access: proxy
