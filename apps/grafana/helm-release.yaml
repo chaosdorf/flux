@@ -43,3 +43,5 @@ spec:
       datasources:
         enabled: true
         searchNamespace: ALL
+    plugins:
+      - grafana-mqtt-datasource
