@@ -17,3 +17,5 @@ data:
       type: grafana-mqtt-datasource
       url: tcp://mqtt.chaosdorf.space:1883
       access: proxy
+      jsonData:
+        uri: tcp://mqtt.chaosdorf.space:1883
