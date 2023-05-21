@@ -10,3 +10,4 @@ resources:
   - ping-exporter
   - prometheus
   - snmp-exporter
+  - snapcast-server
