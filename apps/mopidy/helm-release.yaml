@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mopidy
+
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+
+  chart:
+    spec:
+      chart: mopidy
+      sourceRef:
+        kind: HelmRepository
+        name: mopidy
+
+  values: {}
