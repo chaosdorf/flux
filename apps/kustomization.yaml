@@ -11,3 +11,4 @@ resources:
   - prometheus
   - snmp-exporter
   - snapcast-server
+  - mopidy
