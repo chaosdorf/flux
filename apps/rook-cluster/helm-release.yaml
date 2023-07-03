@@ -19,6 +19,34 @@ spec:
     cephClusterSpec:
       dashboard:
         enabled: true
+      resources:
+        mgr:
+          requests:
+            cpu: 50m
+        mon:
+          requests:
+            cpu: 100m
+        osd:
+          requests:
+            cpu: 100m
+        prepareosd:
+          requests:
+            cpu: 50m
+        mgr-sidecar:
+          requests:
+            cpu: 10m
+        crashcollector:
+          requests:
+            cpu: 10m
+        logcollector:
+          requests:
+            cpu: 10m
+        cleanup:
+          requests:
+            cpu: 50m
+        exporter:
+          requests:
+            cpu: 5m
     ingress:
       dashboard:
         annotations:
