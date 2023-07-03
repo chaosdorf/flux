@@ -16,13 +16,15 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
-    ingress:
+    cephClusterSpec:
       dashboard:
         enabled: true
+    ingress:
+      dashboard:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
-        hosts:
-        - rook.chaosdorf.space
+        host:
+          name: rook.chaosdorf.space
         tls:
         - secretName: rook-tls
           hosts:
