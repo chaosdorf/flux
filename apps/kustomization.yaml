@@ -9,6 +9,7 @@ resources:
   - netbox
   - ping-exporter
   - prometheus
+  - rook-cluster
   - snmp-exporter
   - snapcast-server
   - mopidy

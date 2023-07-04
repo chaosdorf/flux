@@ -1,0 +1,88 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: rook-ceph
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: rook-ceph
+      sourceRef:
+        kind: HelmRepository
+        name: rook-release
+      interval: 1h
+  values:
+    monitoring:
+      enabled: true
+    resources:
+      requests:
+        cpu: 10m
+    csi:
+      csiRBDProvisionerResource: |
+        - name : csi-provisioner
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-resizer
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-attacher
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-snapshotter
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-rbdplugin
+          resource:
+            requests:
+              cpu: 25m
+        - name : csi-omap-generator
+          resource:
+            requests:
+              cpu: 25m
+        - name : liveness-prometheus
+          resource:
+            requests:
+              cpu: 5m
+      csiRBDPluginResource: |
+        - name : driver-registrar
+          resource:
+            requests:
+              cpu: 5m
+        - name : csi-rbdplugin
+          resource:
+            requests:
+              cpu: 25m
+        - name : liveness-prometheus
+          resource:
+            requests:
+              cpu: 5m
+      csiCephFSProvisionerResource: |
+        - name : csi-provisioner
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-resizer
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-attacher
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-snapshotter
+          resource:
+            requests:
+              cpu: 10m
+        - name : csi-cephfsplugin
+          resource:
+            requests:
+              cpu: 25m
+        - name : liveness-prometheus
+          resource:
+            requests:
+              cpu: 5m
