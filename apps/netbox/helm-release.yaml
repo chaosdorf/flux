@@ -31,3 +31,7 @@ spec:
       - secretName: netbox-tls
         hosts:
         - netbox-beta.chaosdorf.space
+    persistence:
+      storageClass: ceph-filesystem
+      accessMode: ReadWriteMany
+      size: 16Gi
