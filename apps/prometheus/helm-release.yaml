@@ -18,7 +18,6 @@ spec:
     prometheus:
       prometheusSpec:
         podAntiAffinity: hard
-        replicas: 3
         retention: 14d
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
