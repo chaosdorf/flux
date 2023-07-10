@@ -5,3 +5,17 @@ resources:
  - helm-release.yaml
  - helm-repository.yaml
  - namespace.yaml
+generatorOptions:
+  labels:
+    grafana_dashboard: "1"
+  disableNameSuffixHash: true
+configMapGenerator:
+ - name: cluster-dashboard
+   files:
+    - cluster-dashboard.json
+ - name: osd-dashboard
+   files:
+    - osd-dashboard.json
+ - name: pools-dashboard
+   files:
+    - pools-dashboard.json
