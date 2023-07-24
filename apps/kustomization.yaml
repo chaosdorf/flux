@@ -7,6 +7,7 @@ resources:
   - labello
   - loki
   - netbox
+  - octoprint
   - ping-exporter
   - prometheus
   - rook-cluster

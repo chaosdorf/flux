@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: octoprint
+spec:
+  selector:
+    matchLabels:
+      app: octoprint
+  endpoints:
+  - port: web
+    path: /plugin/prometheus_exporter/metrics
+    
