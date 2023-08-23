@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: jellyfin
+
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+
+  chart:
+    spec:
+      chart: jellyfin
+      sourceRef:
+        kind: HelmRepository
+        name: jellyfin
+
+  values:
+    resources:
+      jellyfin:
+        requests:
+          cpu: 500m
+          memory: 512Mi
+        limits:
+          cpu: '2'
+          memory: 4Gi
+
+    podSecurityContext:
+      runAsGroup: 0
+      runAsNonRoot: false
+      runAsUser: 0
+      seccompProfile:
+        type: RuntimeDefault
+
+    containerSecurityContext:
+      readOnlyRootFilesystem: true
+      runAsGroup: 0
+      runAsNonRoot: false
+      runAsUser: 0
+
+    persistence:
+      config:
+        enabled: true
+
+      data:
+        enabled: true
+
+    ingress:
+      enabled: true
+      tls: true
+      hostname: jellyfin.chaosdorf.space
+
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+
+    jellyfin:
+      mediaVolumes:
+      - name: fileserver
+        readOnly: true
+        volumeSpec:
+          accessModes:
+            - ReadWriteOnce
+          capacity:
+            storage: 12Ti
+          nfs:
+            path: /srv/storage
+            server: fileserver.chaosdorf.space
