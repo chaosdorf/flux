@@ -46,6 +46,13 @@ spec:
       data:
         enabled: true
 
+        volumeClaimSpec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 32Gi
+
     ingress:
       enabled: true
       tls: true
