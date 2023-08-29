@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: copyparty
+
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+
+  chart:
+    spec:
+      chart: copyparty
+      sourceRef:
+        kind: HelmRepository
+        name: copyparty
+
+  values:
+    ingress:
+      enabled: true
+
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+
+      hosts:
+        - host: copyparty.chaosdorf.space
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+
+      tls:
+        - hosts:
+          - copyparty.chaosdorf.space
+          secretName: ingress-tls
+
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      request:
+        cpu: 100m
+        memory: 256Mi
+
+    volume:
+      volumeSpec:
+        accessModes:
+          - ReadWriteOnce
+        capacity:
+          storage: 16Ti
+        nfs:
+          path: /srv/storage
+          server: fileserver.chaosdorf.space
+
+    persistence:
+      volumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
