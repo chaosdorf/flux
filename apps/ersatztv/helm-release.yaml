@@ -1,0 +1,61 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ersatztv
+
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+
+  chart:
+    spec:
+      chart: ersatztv
+      sourceRef:
+        kind: HelmRepository
+        name: ersatztv
+
+  values:
+    ingress:
+      enabled: true
+
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+
+      hosts:
+        - host: ersatztv.chaosdorf.space
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+
+      tls:
+        - hosts:
+          - ersatztv.chaosdorf.space
+          secretName: ingress-tls
+
+    resources:
+      limits:
+        cpu: "4"
+        memory: 4Gi
+      requests:
+        cpu: 100m
+        memory: 1Gi
+
+    volume:
+      volumeSpec:
+        accessModes:
+          - ReadWriteOnce
+        capacity:
+          storage: 16Ti
+        nfs:
+          path: /srv/storage
+          server: fileserver.chaosdorf.space
+
+    persistence:
+      volumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 8Gi
