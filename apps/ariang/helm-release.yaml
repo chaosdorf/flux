@@ -17,6 +17,10 @@ spec:
         name: ariang
 
   values:
+    env:
+    - name: ARIA2RPCPORT
+      value: "443"
+      
     ingress:
       enabled: true
 
