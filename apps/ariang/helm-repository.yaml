@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: ariang
+
+spec:
+  url: https://lukasklinger.github.io/aria2-ariang-helm/
+  interval: 1h
