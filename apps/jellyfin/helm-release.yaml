@@ -64,7 +64,7 @@ spec:
     jellyfin:
       mediaVolumes:
       - name: fileserver
-        readOnly: true
+        readOnly: false
         volumeSpec:
           accessModes:
             - ReadWriteOnce
