@@ -16,6 +16,18 @@ spec:
     grafana:
       enabled: false
     prometheus:
+      ingress:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+        - prometheus.chaosdorf.space
+        paths:
+        - /
+        tls:
+        - secretName: ingress-tls
+          hosts:
+          - prometheus.chaosdorf.space
       prometheusSpec:
         podAntiAffinity: hard
         retention: 14d
