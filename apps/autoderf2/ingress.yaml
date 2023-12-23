@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: autoderf2
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: autoderf2.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: autoderf2
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - autoderf2.chaosdorf.space
+      secretName: ingress-tls

@@ -1,0 +1,13 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: autoderf2
+  labels:
+    app: autoderf2
+subsets:
+- addresses:
+  - ip: 10.4.255.139
+  ports:
+  - name: web
+    port: 80
+    protocol: TCP
