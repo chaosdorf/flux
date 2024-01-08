@@ -1,0 +1,13 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: beamerstreamer
+  labels:
+    app: beamerstreamer
+subsets:
+- addresses:
+  - ip: 10.4.255.130
+  ports:
+  - name: web
+    port: 8080
+    protocol: TCP
