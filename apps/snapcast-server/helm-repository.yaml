@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: snapcast
-
-spec:
-  url: https://lukasklinger.github.io/snapcast-server-k8s
-  interval: 1h
