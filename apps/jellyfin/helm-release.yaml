@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -17,6 +16,9 @@ spec:
         name: jellyfin
 
   values:
+    nodeSelector:
+      intel-quick-sync: "true"
+
     resources:
       jellyfin:
         requests:
@@ -48,7 +50,7 @@ spec:
 
         volumeClaimSpec:
           accessModes:
-            - ReadWriteOnce
+          - ReadWriteOnce
           resources:
             requests:
               storage: 32Gi
@@ -62,12 +64,15 @@ spec:
         cert-manager.io/cluster-issuer: letsencrypt-prod
 
     jellyfin:
+      extraDevices:
+      - /dev/dri/renderD128
+
       mediaVolumes:
       - name: fileserver
         readOnly: false
         volumeSpec:
           accessModes:
-            - ReadWriteOnce
+          - ReadWriteOnce
           capacity:
             storage: 12Ti
           nfs:
