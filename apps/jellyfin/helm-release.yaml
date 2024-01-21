@@ -65,7 +65,7 @@ spec:
 
     jellyfin:
       extraDevices:
-      - /dev/dri/renderD128
+      - /dev/dri
 
       mediaVolumes:
       - name: fileserver
