@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager
   - external-dns
+  - kured
   - metallb
   - rook-ceph
   - secret-generator
