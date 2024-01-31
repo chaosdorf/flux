@@ -7,7 +7,6 @@ resources:
 - kubernetes-dashboard
 - labello
 - loki
-- netbox
 - octoprint
 - ping-exporter
 - prometheus
