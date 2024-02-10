@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: restreamer
+  namespace: restreamer
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: restreamer.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: restreamer
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+      - restreamer.chaosdorf.space
+      secretName: ingress-tls
