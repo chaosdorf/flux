@@ -6,7 +6,7 @@ metadata:
     app: beamerstreamer
 subsets:
 - addresses:
-  - ip: 10.4.255.130
+  - ip: 10.4.255.127
   ports:
   - name: web
     port: 8080
