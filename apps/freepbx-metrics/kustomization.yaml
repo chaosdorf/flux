@@ -8,7 +8,7 @@ resources:
 configMapGenerator:
 - name: dashboard-freepbx
   files:
-  - dashboard.json
+  - dashboard-freepbx.json
 generatorOptions:
   disableNameSuffixHash: true
   labels:
