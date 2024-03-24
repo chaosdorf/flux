@@ -5,3 +5,11 @@ resources:
 - helm-release.yaml
 - helm-repository.yaml
 - namespace.yaml
+configMapGenerator:
+- name: dashboard-freepbx
+  files:
+  - dashboard.json
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "true"
