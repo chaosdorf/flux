@@ -21,3 +21,4 @@ resources:
 - restreamer
 - stream-recorder
 - freepbx-metrics
+- helios-ipmi
