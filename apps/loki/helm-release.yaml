@@ -9,11 +9,9 @@ spec:
     createNamespace: false
   chart:
     spec:
-      chart: loki-stack
+      chart: loki
       sourceRef:
         kind: HelmRepository
         name: grafana
-  values:
-    loki:
-      url: http://loki.loki:3100 # Grafana datasource to connect to
-      isDefault: false # Grafana datasource should not be default
+      valuesFiles:
+        - values.yaml
