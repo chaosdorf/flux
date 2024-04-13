@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helios-ipmi
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: helios-ipmi.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: helios-ipmi
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - helios-ipmi.chaosdorf.space
+      secretName: ingress-tls
