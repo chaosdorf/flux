@@ -9,7 +9,7 @@ spec:
     createNamespace: false
   chart:
     spec:
-      chart: loki-stack
+      chart: loki
       sourceRef:
         kind: HelmRepository
         name: grafana
