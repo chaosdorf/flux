@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mumble-server
+  namespace: mumble-server
+  labels:
+    app: mumble-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mumble-server
+  template:
+    metadata:
+      labels:
+        app: mumble-server
+    spec:
+      containers:
+      - name: mumble-server
+        image: docker.io/mumblevoip/mumble-server:latest
+        resources:
+          limits:
+            cpu: 250m
+            memory: 512M
+          requests:
+            cpu: 50m
+            memory: 512M
+        ports:
+        - containerPort: 64738
+          name: mumble
