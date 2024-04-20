@@ -25,3 +25,4 @@ resources:
 - registry
 - inventory
 - hackcenter-stream
+- mumble-server
