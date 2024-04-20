@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hackcenter-stream
+  namespace: hackcenter-stream
+spec:
+  type: ClusterIP
+  selector:
+    app: hackcenter-stream
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web

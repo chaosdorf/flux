@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hackcenter-stream
+data:
+  index.html: |
+    <html>
+      <head>
+        <title>Hackcenter Stream</title>
+      </head>
+      <body style="height: 100vh; width: 100vw; overflow: hidden; margin: 0; background-color: black;">
+        <center>
+          <img src="http://beamerstreamer.chaosdorf.space/?action=stream" style="max-width: 100vw; max-height: 100vh;" />
+        </center>
+      </body>
+    </html>

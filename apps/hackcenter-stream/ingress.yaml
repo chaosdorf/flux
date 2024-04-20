@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hackcenter-stream
+  namespace: hackcenter-stream
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: stream.hackcenter.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hackcenter-stream
+                port:
+                  number: 80
+  tls:
+    - hosts:
+      - stream.hackcenter.chaosdorf.space
+      secretName: ingress-tls
