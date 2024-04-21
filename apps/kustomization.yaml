@@ -26,3 +26,4 @@ resources:
 - inventory
 - hackcenter-stream
 - mumble-server
+- mumble-client

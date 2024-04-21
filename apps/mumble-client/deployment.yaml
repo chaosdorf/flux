@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mumble-client
+  namespace: mumble-client
+  labels:
+    app: mumble-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mumble-client
+  template:
+    metadata:
+      labels:
+        app: mumble-client
+    spec:
+      containers:
+      - name: mumble-client-hackcenter
+        image: registry.chaosdorf.space/mumble-client:latest
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 256Mi
+        env:
+        - name: PA_SOURCE_NAME
+          value: alsa_input.1.analog-stereo
+        - name: PA_SOURCE_SERVER
+          value: "10.4.255.127"
+        - name: PA_SOURCE_FORMAT
+          value: s24le
+        - name: PA_SOURCE_CHANNELS
+          value: "2"
+        - name: PA_SOURCE_RATE
+          value: "44100"
+        - name: PA_SINK_NAME
+          value: alsa_output.1.analog-stereo
+        - name: PA_SINK_SERVER
+          value: "10.4.255.127"
+        - name: PA_SINK_FORMAT
+          value: s24le
+        - name: PA_SINK_CHANNELS
+          value: "2"
+        - name: PA_SINK_RATE
+          value: "44100"
+        - name: MUMBLE_SERVER
+          value: mumble.chaosdorf.space
+        - name: MUMBLE_USERNAME
+          value: hackcenter
+        - name: MUMBLE_CHANNEL
+          value: Hackcenter
