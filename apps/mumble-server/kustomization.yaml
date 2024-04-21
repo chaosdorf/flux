@@ -6,3 +6,4 @@ resources:
 - volumes.yaml
 - deployment.yaml
 - service.yaml
+- volumes.yaml
