@@ -20,10 +20,10 @@ spec:
         image: registry.chaosdorf.space/mumble-client:latest
         resources:
           limits:
-            cpu: 100m
+            cpu: 500m
             memory: 256Mi
           requests:
-            cpu: 100m
+            cpu: 250m
             memory: 256Mi
         env:
         - name: PA_SOURCE_NAME
