@@ -4,3 +4,4 @@ namespace: mumble-client
 resources:
 - namespace.yaml
 - deployment.yaml
+- deployment-lounge.yaml
