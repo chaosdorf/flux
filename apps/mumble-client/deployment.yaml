@@ -25,6 +25,14 @@ spec:
           requests:
             cpu: 250m
             memory: 256Mi
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - "mumctl status | grep -v error"
+          initialDelaySeconds: 60
+          periodSeconds: 30
         env:
         - name: PA_SOURCE_NAME
           value: alsa_input.1.analog-stereo
