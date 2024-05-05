@@ -34,6 +34,8 @@ spec:
         org_role: Editor
       auth:
         disable_login_form: true
+      users:
+        default_theme: system
     sidecar:
       dashboards:
         enabled: true
