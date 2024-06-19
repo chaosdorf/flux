@@ -17,8 +17,8 @@ spec:
     spec:
       initContainers:
       - name: copy-app
-        image: registry.chaosdorf.space/inventory:20240419
-        command: 
+        image: registry.chaosdorf.space/inventory:20240619
+        command:
         - 'sh'
         - '-c'
         - "cp -rf /app/* /volume/"
@@ -28,7 +28,7 @@ spec:
           readOnly: false
       containers:
       - name: inventory
-        image: registry.chaosdorf.space/inventory:20240419
+        image: registry.chaosdorf.space/inventory:20240619
         resources:
           limits:
             cpu: 250m
