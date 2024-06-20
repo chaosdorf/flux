@@ -53,7 +53,7 @@ spec:
     volume:
       volumeSpec:
         accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
         capacity:
           storage: 16Ti
         nfs:
