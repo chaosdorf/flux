@@ -5,6 +5,7 @@ resources:
   - descheduler
   - external-dns
   - kured
+  - kyverno
   - metallb
   - rook-ceph
   - secret-generator
