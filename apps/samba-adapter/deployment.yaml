@@ -24,7 +24,7 @@ spec:
             memory: 512Mi
           requests:
             cpu: 50m
-            memory: 512Mi
+            memory: 128Mi
         env:
         - name: SAMBA_HOSTS_ALLOW
           value: "0.0.0.0/0"
