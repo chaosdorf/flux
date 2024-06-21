@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: samba-adapter
+data:
+  config.yml: |
+    auth:
+      - user: foo
+        group: foo
+        uid: 1000
+        gid: 1000
+        password: bar
+
+    global:
+      - "force user = foo"
+      - "force group = foo"
+
+    share:
+      - name: public
+        comment: Public
+        path: /samba/public
+        browsable: yes
+        readonly: no
+        guestok: yes
+        veto: no
+        recycle: yes
