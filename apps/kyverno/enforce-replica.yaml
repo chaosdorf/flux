@@ -1,15 +1,22 @@
-apiVersion: "kyverno.io/v1"
-kind: "ClusterPolicy"
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
 metadata:
-  name: "enforce-replicas"
+  name: enforce-replicas
 spec:
   background: true
   rules:
-  - name: "set-replicas"
+  - name: set-replicas
     match:
-      resources:
-        kinds:
-        - "Deployment"
+      any:
+      - resources:
+          kinds:
+          - Deployment
+    exclude:
+      any:
+      - resources:
+          namespaces:
+          - rook-cluster
     mutate:
       patchStrategicMerge:
         spec:
