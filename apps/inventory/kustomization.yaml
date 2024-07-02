@@ -3,7 +3,5 @@ kind: Kustomization
 namespace: inventory
 resources:
 - namespace.yaml
-- deployment.yaml
-- ingress.yaml
-- service.yaml
-- volumes.yaml
+- helm-repository.yaml
+- helm-release.yaml
