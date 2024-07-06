@@ -5,4 +5,4 @@ resources:
 - namespace.yaml
 - crds.yaml
 - helm-repository.yaml
-#- helm-release.yaml
+- helm-release.yaml
