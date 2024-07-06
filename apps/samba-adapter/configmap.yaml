@@ -25,3 +25,11 @@ data:
         guestok: yes
         veto: no
         recycle: yes
+      - name: pstwo
+        comment: PS2 Share for Games
+        path: /samba/public/documents/ps2games
+        browsable: yes
+        readonly: no
+        guestok: yes
+        veto: no
+        recycle: yes

@@ -10,7 +10,7 @@ spec:
     storage: 16Ti
   nfs:
     server: fileserver.chaosdorf.space
-    path: /srv/storage/documents/ps2games
+    path: /srv/storage
   accessModes:
   - ReadWriteOnce
 ---
