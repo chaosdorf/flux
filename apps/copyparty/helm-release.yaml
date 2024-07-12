@@ -47,8 +47,8 @@ spec:
         cpu: "1"
         memory: 1Gi
       requests:
-        cpu: 100m
-        memory: 256Mi
+        cpu: 10m
+        memory: 128Mi
 
     volume:
       volumeSpec:

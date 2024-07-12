@@ -23,7 +23,7 @@ spec:
       jellyfin:
         requests:
           cpu: 500m
-          memory: 512Mi
+          memory: 256Mi
         limits:
           cpu: 3000m
           memory: 4Gi
