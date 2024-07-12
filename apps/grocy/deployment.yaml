@@ -31,7 +31,7 @@ spec:
         env:
         - name: TZ
           value: Europe/Berlin
-        - name: DISABLE_AUTH
+        - name: GROCY_DISABLE_AUTH
           value: "true"
         volumeMounts:
         - name: data
