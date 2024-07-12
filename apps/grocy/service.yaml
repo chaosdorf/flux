@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grocy
+  namespace: grocy
+spec:
+  type: ClusterIP
+  selector:
+    app: grocy
+  ports:
+  - name: web
+    protocol: TCP
+    port: 80
+    targetPort: web
