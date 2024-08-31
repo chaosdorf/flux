@@ -10,3 +10,4 @@ resources:
 - rook-ceph
 - secret-generator
 - k8up
+- csi-driver-smb

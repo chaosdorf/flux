@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: csi-driver-smb
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: csi-driver-smb
+      sourceRef:
+        kind: HelmRepository
+        name: csi-driver-smb
+      interval: 1h
+  values: {}
