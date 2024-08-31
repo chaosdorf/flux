@@ -22,7 +22,7 @@ spec:
     resources:
       jellyfin:
         requests:
-          cpu: 500m
+          cpu: 200m
           memory: 256Mi
         limits:
           cpu: 3000m
@@ -71,10 +71,18 @@ spec:
       - name: fileserver
         readOnly: false
         volumeSpec:
-          accessModes:
-          - ReadWriteOnce
           capacity:
             storage: 12Ti
-          nfs:
-            path: /srv/storage
-            server: fileserver.chaosdorf.space
+          accessModes:
+          - ReadWriteMany
+          persistentVolumeReclaimPolicy: Retain
+          mountOptions:
+          - dir_mode=0777
+          - file_mode=0777
+          - guest
+          csi:
+            driver: smb.csi.k8s.io
+            readOnly: false
+            volumeHandle: smb-fileserver-jellyfin
+            volumeAttributes:
+              source: //fileserver.chaosdorf.space/public
