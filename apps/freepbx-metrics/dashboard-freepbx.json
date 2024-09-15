@@ -56,6 +56,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -67,7 +68,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -122,6 +123,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -133,7 +135,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -189,6 +191,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -200,7 +203,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -239,7 +242,9 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "default": true,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -272,6 +277,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -283,7 +289,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -291,6 +297,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
+          "exemplar": false,
           "expr": "max(asterisk_channels_count)",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -372,6 +379,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -383,7 +391,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -440,6 +448,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -451,7 +460,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -474,7 +483,9 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "default": true,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -538,7 +549,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -547,7 +558,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "sum by(id) (asterisk_endpoints_state)",
+          "expr": "max by(id) (asterisk_endpoints_state)",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -563,7 +574,9 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "default": true,
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "List of SIP trunks and their registration status.",
       "fieldConfig": {
@@ -629,7 +642,7 @@
         "frameIndex": 0,
         "showHeader": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -638,7 +651,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "sum by(username) (asterisk_pjsip_outbound_registration_status)",
+          "expr": "max by(username) (asterisk_pjsip_outbound_registration_status)",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -667,6 +680,6 @@
   "timezone": "browser",
   "title": "FreePBX Overview",
   "uid": "fdgn93ajipds0f",
-  "version": 12,
+  "version": 1,
   "weekStart": ""
 }
