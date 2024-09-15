@@ -1,0 +1,58 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: freepbx-metrics
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+  chart:
+    spec:
+      chart: haproxy
+      sourceRef:
+        kind: HelmRepository
+        name: freepbx-metrics
+
+  values:
+    containerPorts:
+      http: 80
+
+    config: |
+      global
+        log stdout format raw local0
+        maxconn 1024
+
+      defaults
+        log global
+        timeout client 60s
+        timeout connect 60s
+        timeout server 60s
+
+      resolvers dns
+        nameserver public-0 1.1.1.1:53
+        hold valid 600s
+
+      frontend http
+        bind *:80
+        default_backend site-backend
+
+      backend site-backend
+        balance leastconn
+        server site pbx.chaosdorf.space:8088 resolvers dns check inter 1000
+
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+
+    serviceMonitor:
+      enabled: true
+
+      endpoints:
+      - port: http
+        path: /metrics
+        scheme: http
+        interval: 10s

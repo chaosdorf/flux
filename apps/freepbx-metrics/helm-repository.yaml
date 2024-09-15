@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: freepbx-metrics
+spec:
+  url: https://haproxytech.github.io/helm-charts
+  interval: 1h
