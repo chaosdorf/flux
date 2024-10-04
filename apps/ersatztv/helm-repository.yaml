@@ -1,9 +1,0 @@
----
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: ersatztv
-
-spec:
-  url: https://lukasklinger.github.io/ersatztv-helm/
-  interval: 1h
