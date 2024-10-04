@@ -17,8 +17,10 @@ spec:
           namespaces:
           - rook-cluster
           - rook-ceph
+          selector:
+            matchLabels:
+              kyverno: do-not-enforce-min-replicas
     mutate:
       patchStrategicMerge:
         spec:
           replicas: 2
-
