@@ -1,0 +1,288 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: lgtm
+
+spec:
+  interval: 1h
+  install:
+    createNamespace: false
+
+  chart:
+    spec:
+      chart: lgtm-distributed
+      sourceRef:
+        kind: HelmRepository
+        name: lgtm
+
+  values:
+    # we don't do on-call in the dorf
+    grafana-oncall:
+      enabled: false
+
+    grafana:
+      enabled: true
+
+      testFramework:
+        enabled: false
+
+      grafana.ini:
+        auth.anonymous:
+          enabled: true
+          org_name: Main Org.
+          org_role: Editor
+        auth:
+          disable_login_form: true
+        users:
+          default_theme: system
+
+      ingress:
+        enabled: false
+
+        hosts:
+        - chart-example.local
+
+        tls: []
+        #  - secretName: chart-example-tls
+        #    hosts:
+        #      - chart-example.local
+
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+
+      # Administrator credentials when not using an existing secret
+      adminUser: admin
+
+      ## Sidecars that collect the configmaps with specified label and stores the included files them into the respective folders
+      sidecar:
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 50m
+            memory: 80Mi
+          requests:
+            cpu: 10m
+            memory: 50Mi
+
+        dashboards:
+          enabled: true
+
+      datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+          - name: Loki
+            uid: loki
+            type: loki
+            url: http://{{ .Release.Name }}-loki-gateway
+            isDefault: false
+          - name: Mimir
+            uid: prom
+            type: prometheus
+            url: http://{{ .Release.Name }}-mimir-nginx/prometheus
+            isDefault: true
+          - name: Tempo
+            uid: tempo
+            type: tempo
+            url: http://{{ .Release.Name }}-tempo-query-frontend:3100
+            isDefault: false
+            jsonData:
+              tracesToLogsV2:
+                datasourceUid: loki
+              lokiSearch:
+                datasourceUid: loki
+              tracesToMetrics:
+                datasourceUid: prom
+              serviceMap:
+                datasourceUid: prom
+
+    loki:
+      enabled: true
+
+      # Configuration for the ingester
+      ingester:
+        # -- Volume mounts to add to the ingester pods
+        extraVolumeMounts: []
+        # -- Volumes to add to the ingester pods
+        extraVolumes: []
+        persistence:
+          # -- Enable creating PVCs which is required when using boltdb-shipper
+          enabled: true
+          # -- Use emptyDir with ramdisk for storage. **Please note that all data in ingester will be lost on pod restart**
+          inMemory: false
+          # -- List of the ingester PVCs
+          # @notationType -- list
+          claims:
+          - name: data
+            size: 50Gi
+            #   -- Storage class to be used.
+            #   If defined, storageClassName: <storageClass>.
+            #   If set to "-", storageClassName: "", which disables dynamic provisioning.
+            #   If empty or set to null, no storageClassName spec is
+            #   set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+            storageClass: "ceph-filesystem"
+            # - name: wal
+            #   size: 150Gi
+          # -- Enable StatefulSetAutoDeletePVC feature
+          enableStatefulSetAutoDeletePVC: false
+          whenDeleted: Retain
+          whenScaled: Retain
+        # -- Adds the appProtocol field to the ingester service. This allows ingester to work with istio protocol selection.
+        appProtocol:
+          # -- Set the optional grpc service protocol. Ex: "grpc", "http2" or "https"
+          grpc: ""
+
+      # Configuration for the distributor
+      distributor:
+        # -- Volume mounts to add to the distributor pods
+        extraVolumeMounts: []
+        # -- Volumes to add to the distributor pods
+        extraVolumes: []
+
+      # Configuration for the querier
+      querier:
+        # -- Volume mounts to add to the querier pods
+        extraVolumeMounts: []
+        # -- Volumes to add to the querier pods
+        extraVolumes: []
+        persistence:
+          # -- Enable creating PVCs for the querier cache
+          enabled: true
+          # -- Size of persistent disk
+          size: 50Gi
+          # -- Storage class to be used.
+          # If defined, storageClassName: <storageClass>.
+          # If set to "-", storageClassName: "", which disables dynamic provisioning.
+          # If empty or set to null, no storageClassName spec is
+          # set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+          storageClass: "ceph-filesystem"
+          # -- Annotations for querier PVCs
+          annotations: {}
+
+      # Configuration for the query-frontend
+      queryFrontend:
+        # -- Volume mounts to add to the query-frontend pods
+        extraVolumeMounts: []
+        # -- Volumes to add to the query-frontend pods
+        extraVolumes: []
+
+      # Configuration for the compactor
+      compactor:
+        # -- Volume mounts to add to the compactor pods
+        extraVolumeMounts: []
+        # -- Volumes to add to the compactor pods
+        extraVolumes: []
+        persistence:
+          # -- Enable creating PVCs for the compactor
+          enabled: true
+          # -- Size of persistent disk
+          size: 50Gi
+          # -- Storage class to be used.
+          # If defined, storageClassName: <storageClass>.
+          # If set to "-", storageClassName: "", which disables dynamic provisioning.
+          # If empty or set to null, no storageClassName spec is
+          # set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+          storageClass: "ceph-filesystem"
+          # -- Annotations for compactor PVCs
+          annotations: {}
+          # -- List of the compactor PVCs
+          # @notationType -- list
+          claims:
+          - name: data
+            size: 50Gi
+            #   -- Storage class to be used.
+            #   If defined, storageClassName: <storageClass>.
+            #   If set to "-", storageClassName: "", which disables dynamic provisioning.
+            #   If empty or set to null, no storageClassName spec is
+            #   set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
+            storageClass: "ceph-filesystem"
+            # - name: wal
+            #   size: 150Gi
+          # -- Enable StatefulSetAutoDeletePVC feature
+          enableStatefulSetAutoDeletePVC: false
+          whenDeleted: Retain
+          whenScaled: Retain
+
+    tempo:
+      enabled: true
+      reportingEnabled: false
+
+      ingester:
+        replicas: 1
+        persistence:
+          enabled: true
+          size: 50Gi
+          storageClass: "ceph-filesystem"
+
+      cache: null
+
+      traces:
+        otlp:
+          http:
+            enabled: true
+          grpc:
+            enabled: true
+
+      memcached:
+        enabled: false
+
+      gateway:
+        enabled: true
+
+    mimir:
+      enabled: true
+
+      alertmanager:
+        persistentVolume:
+          enabled: true
+          storageClass: "ceph-filesystem"
+
+      distributor:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+
+      ingester:
+        replicas: 2
+
+        persistentVolume:
+          storageClass: "ceph-filesystem"
+
+        zoneAwareReplication:
+          enabled: false
+
+      querier:
+        replicas: 2
+
+      query_scheduler:
+        replicas: 1
+
+      store_gateway:
+        persistentVolume:
+          storageClass: "ceph-filesystem"
+
+        zoneAwareReplication:
+          enabled: false
+
+      compactor:
+        replicas: 1
+
+        persistentVolume:
+          storageClass: "ceph-filesystem"
+
+      memcachedExporter:
+        enabled: false
+
+      minio:
+        enabled: true
+        persistence:
+          size: 50Gi
+
+      gateway:
+        enabledNonEnterprise: true
