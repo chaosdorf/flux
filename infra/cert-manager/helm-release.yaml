@@ -13,3 +13,4 @@ spec:
       interval: 1h
   values:
     installCRDs: true
+    clusterResourceNamespace: cert-manager
