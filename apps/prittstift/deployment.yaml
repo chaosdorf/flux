@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prittstift
+  labels:
+    app: prittstift
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: prittstift
+  template:
+    metadata:
+      labels:
+        app: prittstift
+    spec:
+      containers:
+        - name: labello
+          image: telegnom/labello:v0.2.0
+          env:
+            - name: LAB_SERVER_PORT
+              value: "8080"
+            - name: LAB_SERVER_HOST
+              value: 0.0.0.0
+            - name: LAB_LOGGING
+              value: "30"
+            - name: LAB_WEBSITE_HTML_TITLE
+              value: prittstift - more than labello
+            - name: LAB_WEBSITE_TITLE
+              value: prittstift
+            - name: LAB_WEBSITE_SLUG
+              value: labello++
+            - name: LAB_WEBSITE_BOOTSTRAP_LOCAL
+              value: "true"
+            - name: LAB_LABEL_MARGIN_TOP
+              value: "24"
+            - name: LAB_LABEL_MARGIN_BOTTOM
+              value: "24"
+            - name: LAB_LABEL_MARGIN_LEFT
+              value: "24"
+            - name: LAB_LABEL_MARGIN_RIGHT
+              value: "24"
+            - name: LAB_LABEL_FEED_MARGIN
+              value: "16"
+            - name: LAB_LABEL_FONT_SPACING
+              value: "13"
+            - name: LAB_PRINTER_DEVICE
+              value: tcp://10.2.7.1:9100
+            - name: LAB_PRINTER_MODEL
+              value: QL-720NW
+            - name: LAB_FONT_PATH
+              value: /opt/labello/fonts
+          livenessProbe:
+            httpGet:
+              path: /
+              port: web
+          resources:
+            limits:
+              memory: 128M
+            requests:
+              cpu: 100m
+              memory: 128M
+          ports:
+            - containerPort: 8080
+              name: web
+          volumeMounts:
+            - name: fonts
+              mountPath: /opt/labello/fonts
+      volumes:
+        - name: fonts
+          persistentVolumeClaim:
+            claimName: fonts

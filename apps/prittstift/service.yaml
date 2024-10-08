@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prittstift
+spec:
+  selector:
+    app: prittstift
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web
