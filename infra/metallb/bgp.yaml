@@ -5,7 +5,7 @@ metadata:
 spec:
   myASN: 4200000000
   peerASN: 4200000000
-  peerAddress: 10.0.0.1
+  peerAddress: 10.7.0.3
 ---
 apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
