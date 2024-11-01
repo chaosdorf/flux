@@ -21,10 +21,10 @@ spec:
       honorLabels: true
       params:
         - name: cr1
-          target: 10.0.0.1
+          target: 10.1.0.3
           module:
             - if_mib
         - name: cr2
-          target: 10.1.0.3
+          target: 10.1.0.1
           module:
             - if_mib
