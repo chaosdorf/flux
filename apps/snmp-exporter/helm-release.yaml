@@ -24,3 +24,7 @@ spec:
           target: 10.0.0.1
           module:
             - if_mib
+        - name: cr2
+          target: 10.1.0.3
+          module:
+            - if_mib
