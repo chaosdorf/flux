@@ -47,13 +47,21 @@ spec:
 
     volume:
       volumeSpec:
-        accessModes:
-        - ReadWriteOnce
         capacity:
           storage: 16Ti
-        nfs:
-          path: /srv/storage/tmp
-          server: fileserver.chaosdorf.space
+        accessModes:
+        - ReadWriteMany
+        persistentVolumeReclaimPolicy: Retain
+        mountOptions:
+        - dir_mode=0777
+        - file_mode=0777
+        - guest
+        csi:
+          driver: smb.csi.k8s.io
+          readOnly: false
+          volumeHandle: smb-fileserver-ariang
+          volumeAttributes:
+            source: //fileserver.chaosdorf.space/public
 
     persistence:
       volumeClaimSpec:
