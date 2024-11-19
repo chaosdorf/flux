@@ -16,6 +16,11 @@ spec:
         name: copyparty
 
   values:
+
+    image:
+      repository: ghcr.io/9001/copyparty-ac
+      tag: 1.12.2
+
     ingress:
       enabled: true
 
