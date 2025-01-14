@@ -11,3 +11,6 @@ subsets:
   - name: web
     port: 8080
     protocol: TCP
+  - name: metrics
+    port: 9100
+    protocol: TCP
