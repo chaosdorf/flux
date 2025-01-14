@@ -6,3 +6,4 @@ resources:
 - ingress.yaml
 - namespace.yaml
 - service.yaml
+- service-monitor.yaml
