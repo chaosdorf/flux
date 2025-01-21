@@ -1,0 +1,14 @@
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: dashpi
+  labels:
+    app: dashpi
+subsets:
+- addresses:
+  - ip: 10.4.255.162
+  ports:
+  - name: metrics
+    port: 9100
+    protocol: TCP
