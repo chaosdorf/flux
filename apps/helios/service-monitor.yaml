@@ -1,0 +1,12 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: helios
+spec:
+  selector:
+    matchLabels:
+      app: helios
+  endpoints:
+  - port: metrics
+    interval: 30s

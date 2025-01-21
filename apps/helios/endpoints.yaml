@@ -1,0 +1,14 @@
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: helios
+  labels:
+    app: helios
+subsets:
+- addresses:
+  - ip: 10.1.255.233
+  ports:
+  - name: metrics
+    port: 9100
+    protocol: TCP
