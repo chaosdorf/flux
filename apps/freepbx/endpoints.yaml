@@ -5,7 +5,7 @@ metadata:
   name: freepbx
 subsets:
   - addresses:
-      - ip: 10.7.255.46
+      - ip: 10.7.62.195
     ports:
       - name: web
         port: 80
