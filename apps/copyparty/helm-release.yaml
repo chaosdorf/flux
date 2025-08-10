@@ -19,7 +19,7 @@ spec:
 
     image:
       repository: ghcr.io/9001/copyparty-ac
-      tag: 1.12.2
+      tag: 1.19.0
 
     ingress:
       enabled: true
