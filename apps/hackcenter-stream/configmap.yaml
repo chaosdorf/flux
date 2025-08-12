@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: hackcenter-stream
 data:
-  index.html: |
+  index.html: |-
     <html>
       <head>
         <title>Hackcenter Stream</title>

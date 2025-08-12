@@ -16,23 +16,23 @@ spec:
         app: hackcenter-stream
     spec:
       containers:
-      - name: hackcenter-stream
-        image: docker.io/library/nginx:latest
-        resources:
-          limits:
-            cpu: 100m
-            memory: 128M
-          requests:
-            cpu: 20m
-            memory: 32M
-        ports:
-        - containerPort: 80
-          name: web
-        volumeMounts:
-        - name: data
-          mountPath: "/usr/share/nginx/html"
-          readOnly: true
+        - name: hackcenter-stream
+          image: docker.io/library/nginx:latest
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128M
+            requests:
+              cpu: 20m
+              memory: 32M
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - name: data
+              mountPath: /usr/share/nginx/html
+              readOnly: true
       volumes:
-      - name: data
-        configMap:
-          name: hackcenter-stream
+        - name: data
+          configMap:
+            name: hackcenter-stream

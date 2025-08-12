@@ -7,6 +7,5 @@ spec:
     matchLabels:
       app: octoprint
   endpoints:
-  - port: web
-    path: /plugin/prometheus_exporter/metrics
-    
+    - port: web
+      path: /plugin/prometheus_exporter/metrics

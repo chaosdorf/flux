@@ -2,71 +2,61 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: ariang
-
 spec:
   interval: 1h
   install:
     createNamespace: false
-
   chart:
     spec:
       chart: ariang
       sourceRef:
         kind: HelmRepository
         name: ariang
-
   values:
     env:
-    - name: ARIA2RPCPORT
-      value: "443"
-
+      - name: ARIA2RPCPORT
+        value: '443'
     ingress:
       enabled: true
-
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-
       hosts:
-      - host: aria.chaosdorf.space
-        paths:
-        - path: /
-          pathType: ImplementationSpecific
-
+        - host: aria.chaosdorf.space
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
       tls:
-      - hosts:
-        - aria.chaosdorf.space
-        secretName: ingress-tls
-
+        - hosts:
+            - aria.chaosdorf.space
+          secretName: ingress-tls
     resources:
       limits:
-        cpu: "1"
+        cpu: '1'
         memory: 2Gi
       requests:
         cpu: 10m
         memory: 128Mi
-
     volume:
       volumeSpec:
         capacity:
           storage: 16Ti
         accessModes:
-        - ReadWriteMany
+          - ReadWriteMany
         persistentVolumeReclaimPolicy: Retain
         mountOptions:
-        - dir_mode=0777
-        - file_mode=0777
-        - guest
+          - dir_mode=0777
+          - file_mode=0777
+          - guest
         csi:
           driver: smb.csi.k8s.io
           readOnly: false
           volumeHandle: smb-fileserver-ariang
           volumeAttributes:
             source: //fileserver.chaosdorf.space/public
-
     persistence:
       volumeClaimSpec:
         accessModes:
-        - ReadWriteOnce
+          - ReadWriteOnce
         resources:
           requests:
             storage: 1Gi

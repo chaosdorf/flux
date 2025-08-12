@@ -2,23 +2,19 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: jellyfin
-
 spec:
   interval: 1h
   install:
     createNamespace: false
-
   chart:
     spec:
       chart: jellyfin
       sourceRef:
         kind: HelmRepository
         name: jellyfin
-
   values:
     nodeSelector:
-      intel-quick-sync: "true"
-
+      intel-quick-sync: 'true'
     resources:
       jellyfin:
         requests:
@@ -27,62 +23,53 @@ spec:
         limits:
           cpu: 3000m
           memory: 4Gi
-
     podSecurityContext:
       runAsGroup: 0
       runAsNonRoot: false
       runAsUser: 0
       seccompProfile:
         type: RuntimeDefault
-
     containerSecurityContext:
       readOnlyRootFilesystem: true
       runAsGroup: 0
       runAsNonRoot: false
       runAsUser: 0
-
     persistence:
       config:
         enabled: true
-
       data:
         enabled: true
-
         volumeClaimSpec:
           accessModes:
-          - ReadWriteOnce
+            - ReadWriteOnce
           resources:
             requests:
               storage: 32Gi
-
     ingress:
       enabled: true
       tls: true
       hostname: jellyfin.chaosdorf.space
-
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-
     jellyfin:
       extraDevices:
-      - /dev/dri
-
+        - /dev/dri
       mediaVolumes:
-      - name: fileserver
-        readOnly: false
-        volumeSpec:
-          capacity:
-            storage: 12Ti
-          accessModes:
-          - ReadWriteMany
-          persistentVolumeReclaimPolicy: Retain
-          mountOptions:
-          - dir_mode=0777
-          - file_mode=0777
-          - guest
-          csi:
-            driver: smb.csi.k8s.io
-            readOnly: false
-            volumeHandle: smb-fileserver-jellyfin
-            volumeAttributes:
-              source: //fileserver.chaosdorf.space/public
+        - name: fileserver
+          readOnly: false
+          volumeSpec:
+            capacity:
+              storage: 12Ti
+            accessModes:
+              - ReadWriteMany
+            persistentVolumeReclaimPolicy: Retain
+            mountOptions:
+              - dir_mode=0777
+              - file_mode=0777
+              - guest
+            csi:
+              driver: smb.csi.k8s.io
+              readOnly: false
+              volumeHandle: smb-fileserver-jellyfin
+              volumeAttributes:
+                source: //fileserver.chaosdorf.space/public

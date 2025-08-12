@@ -1,4 +1,3 @@
----
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -8,5 +7,5 @@ spec:
     matchLabels:
       app: dashpi
   endpoints:
-  - port: metrics
-    interval: 30s
+    - port: metrics
+      interval: 30s

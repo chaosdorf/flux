@@ -18,5 +18,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - labello.chaosdorf.space
+        - labello.chaosdorf.space
       secretName: ingress-tls

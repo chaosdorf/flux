@@ -1,9 +1,7 @@
----
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: heimdall
-
 spec:
   url: https://djjudas21.github.io/charts
   interval: 1h

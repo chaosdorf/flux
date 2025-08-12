@@ -2,30 +2,24 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: lgtm
-
 spec:
   interval: 1h
   install:
     createNamespace: false
-
   chart:
     spec:
       chart: lgtm-distributed
       sourceRef:
         kind: HelmRepository
         name: lgtm
-
   values:
     # we don't do on-call in the dorf
     grafana-oncall:
       enabled: false
-
     grafana:
       enabled: true
-
       testFramework:
         enabled: false
-
       grafana.ini:
         auth.anonymous:
           enabled: true
@@ -35,18 +29,14 @@ spec:
           disable_login_form: true
         users:
           default_theme: system
-
       ingress:
         enabled: false
-
         hosts:
-        - chart-example.local
-
+          - chart-example.local
         tls: []
         #  - secretName: chart-example-tls
         #    hosts:
         #      - chart-example.local
-
       resources:
         limits:
           cpu: 100m
@@ -68,39 +58,36 @@ spec:
           requests:
             cpu: 10m
             memory: 50Mi
-
         dashboards:
           enabled: true
-
       datasources:
         datasources.yaml:
           apiVersion: 1
           datasources:
-          - name: Loki
-            uid: loki
-            type: loki
-            url: http://{{ .Release.Name }}-loki-gateway
-            isDefault: false
-          - name: Mimir
-            uid: prom
-            type: prometheus
-            url: http://{{ .Release.Name }}-mimir-nginx/prometheus
-            isDefault: true
-          - name: Tempo
-            uid: tempo
-            type: tempo
-            url: http://{{ .Release.Name }}-tempo-query-frontend:3100
-            isDefault: false
-            jsonData:
-              tracesToLogsV2:
-                datasourceUid: loki
-              lokiSearch:
-                datasourceUid: loki
-              tracesToMetrics:
-                datasourceUid: prom
-              serviceMap:
-                datasourceUid: prom
-
+            - name: Loki
+              uid: loki
+              type: loki
+              url: http://{{ .Release.Name }}-loki-gateway
+              isDefault: false
+            - name: Mimir
+              uid: prom
+              type: prometheus
+              url: http://{{ .Release.Name }}-mimir-nginx/prometheus
+              isDefault: true
+            - name: Tempo
+              uid: tempo
+              type: tempo
+              url: http://{{ .Release.Name }}-tempo-query-frontend:3100
+              isDefault: false
+              jsonData:
+                tracesToLogsV2:
+                  datasourceUid: loki
+                lokiSearch:
+                  datasourceUid: loki
+                tracesToMetrics:
+                  datasourceUid: prom
+                serviceMap:
+                  datasourceUid: prom
     loki:
       enabled: true
 
@@ -118,14 +105,14 @@ spec:
           # -- List of the ingester PVCs
           # @notationType -- list
           claims:
-          - name: data
-            size: 50Gi
+            - name: data
+              size: 50Gi
             #   -- Storage class to be used.
             #   If defined, storageClassName: <storageClass>.
             #   If set to "-", storageClassName: "", which disables dynamic provisioning.
             #   If empty or set to null, no storageClassName spec is
             #   set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
-            storageClass: "ceph-filesystem"
+              storageClass: ceph-filesystem
             # - name: wal
             #   size: 150Gi
           # -- Enable StatefulSetAutoDeletePVC feature
@@ -135,7 +122,7 @@ spec:
         # -- Adds the appProtocol field to the ingester service. This allows ingester to work with istio protocol selection.
         appProtocol:
           # -- Set the optional grpc service protocol. Ex: "grpc", "http2" or "https"
-          grpc: ""
+          grpc: ''
 
       # Configuration for the distributor
       distributor:
@@ -160,7 +147,7 @@ spec:
           # If set to "-", storageClassName: "", which disables dynamic provisioning.
           # If empty or set to null, no storageClassName spec is
           # set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
-          storageClass: "ceph-filesystem"
+          storageClass: ceph-filesystem
           # -- Annotations for querier PVCs
           annotations: {}
 
@@ -187,102 +174,81 @@ spec:
           # If set to "-", storageClassName: "", which disables dynamic provisioning.
           # If empty or set to null, no storageClassName spec is
           # set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
-          storageClass: "ceph-filesystem"
+          storageClass: ceph-filesystem
           # -- Annotations for compactor PVCs
           annotations: {}
           # -- List of the compactor PVCs
           # @notationType -- list
           claims:
-          - name: data
-            size: 50Gi
+            - name: data
+              size: 50Gi
             #   -- Storage class to be used.
             #   If defined, storageClassName: <storageClass>.
             #   If set to "-", storageClassName: "", which disables dynamic provisioning.
             #   If empty or set to null, no storageClassName spec is
             #   set, choosing the default provisioner (gp2 on AWS, standard on GKE, AWS, and OpenStack).
-            storageClass: "ceph-filesystem"
+              storageClass: ceph-filesystem
             # - name: wal
             #   size: 150Gi
           # -- Enable StatefulSetAutoDeletePVC feature
           enableStatefulSetAutoDeletePVC: false
           whenDeleted: Retain
           whenScaled: Retain
-
     tempo:
       enabled: true
       reportingEnabled: false
-
       ingester:
         replicas: 1
         persistence:
           enabled: true
           size: 50Gi
-          storageClass: "ceph-filesystem"
-
-      cache: null
-
+          storageClass: ceph-filesystem
+      cache:
       traces:
         otlp:
           http:
             enabled: true
           grpc:
             enabled: true
-
       memcached:
         enabled: false
-
       gateway:
         enabled: true
-
     mimir:
       enabled: true
-
       alertmanager:
         persistentVolume:
           enabled: true
-          storageClass: "ceph-filesystem"
-
+          storageClass: ceph-filesystem
       distributor:
         resources:
           requests:
             cpu: 100m
             memory: 512Mi
-
       ingester:
         replicas: 2
-
         persistentVolume:
-          storageClass: "ceph-filesystem"
-
+          storageClass: ceph-filesystem
         zoneAwareReplication:
           enabled: false
-
       querier:
         replicas: 2
-
       query_scheduler:
         replicas: 1
-
       store_gateway:
         persistentVolume:
-          storageClass: "ceph-filesystem"
-
+          storageClass: ceph-filesystem
         zoneAwareReplication:
           enabled: false
-
       compactor:
         replicas: 1
-
         persistentVolume:
-          storageClass: "ceph-filesystem"
-
+          storageClass: ceph-filesystem
       memcachedExporter:
         enabled: false
-
       minio:
         enabled: true
         persistence:
           size: 50Gi
-
       gateway:
         enabledNonEnterprise: true

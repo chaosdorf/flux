@@ -9,12 +9,12 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-account-key
     solvers:
-    - dns01:
-        cloudflare:
-          email: account+cloudflare@chaosdorf.de
-          apiTokenSecretRef:
-            name: cloudflare-apikey-secret
-            key: apikey
-      selector:
-        dnsZones:
-        - chaosdorf.space
+      - dns01:
+          cloudflare:
+            email: account+cloudflare@chaosdorf.de
+            apiTokenSecretRef:
+              name: cloudflare-apikey-secret
+              key: apikey
+        selector:
+          dnsZones:
+            - chaosdorf.space

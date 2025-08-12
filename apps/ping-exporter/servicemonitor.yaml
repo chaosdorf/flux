@@ -7,5 +7,5 @@ spec:
     matchLabels:
       app.kubernetes.io/name: ping-exporter
   endpoints:
-  - port: http
-    interval: 5s
+    - port: http
+      interval: 5s

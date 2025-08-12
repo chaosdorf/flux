@@ -2,43 +2,35 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: inventory
-
 spec:
   interval: 1h
   install:
     createNamespace: false
-
   chart:
     spec:
       chart: inventory
       sourceRef:
         kind: HelmRepository
         name: inventory
-
   values:
     replicaCount: 3
-
     ingress:
       enabled: true
-      className: ""
-
+      className: ''
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-
       hosts:
-      - host: inventory.chaosdorf.space
-        paths:
-        - path: /
-          pathType: Prefix
-          service:
-            name: inventory
-            port: 8080
-
+        - host: inventory.chaosdorf.space
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: inventory
+                port: 8080
       tls:
-      - hosts:
-        - inventory.chaosdorf.space
-        secretName: ingress-tls
-
+        - hosts:
+            - inventory.chaosdorf.space
+          secretName: ingress-tls
     resources:
       limits:
         cpu: 100m
@@ -46,10 +38,9 @@ spec:
       requests:
         cpu: 20m
         memory: 32Mi
-
     volumeClaim:
       accessModes:
-      - ReadWriteMany
+        - ReadWriteMany
       capacity:
         storage: 128Mi
-      storageClassName: "ceph-filesystem"
+      storageClassName: ceph-filesystem

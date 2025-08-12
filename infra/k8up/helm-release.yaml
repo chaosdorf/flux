@@ -2,7 +2,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: k8up
-
 spec:
   interval: 1h
   chart:
@@ -12,5 +11,4 @@ spec:
         kind: HelmRepository
         name: k8up
       interval: 1h
-
   values: {}
