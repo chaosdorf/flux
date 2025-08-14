@@ -203,7 +203,7 @@ spec:
           enabled: true
           size: 50Gi
           storageClass: ceph-filesystem
-      cache:
+      cache: null
       traces:
         otlp:
           http:

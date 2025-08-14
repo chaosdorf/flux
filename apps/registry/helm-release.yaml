@@ -42,4 +42,4 @@ spec:
     garbageCollect:
       enabled: true
       deleteUntagged: true
-      schedule: 0 1 * * *
+      schedule: "0 1 * * *"
