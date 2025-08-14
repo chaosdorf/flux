@@ -2,7 +2,6 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
   name: lgtm
-
 spec:
   url: https://grafana.github.io/helm-charts
   interval: 1h

@@ -5,7 +5,7 @@ metadata:
   labels:
     app: helios-ipmi
 subsets:
-- addresses:
-  - ip: 10.1.255.248
-  ports:
-  - port: 80
+  - addresses:
+      - ip: 10.1.255.248
+    ports:
+      - port: 80

@@ -10,7 +10,7 @@ spec:
   selector:
     app: samba-adapter
   ports:
-  - name: smb
-    protocol: TCP
-    port: 445
-    targetPort: smb
+    - name: smb
+      protocol: TCP
+      port: 445
+      targetPort: smb

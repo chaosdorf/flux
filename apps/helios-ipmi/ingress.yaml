@@ -18,5 +18,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - helios-ipmi.chaosdorf.space
+        - helios-ipmi.chaosdorf.space
       secretName: ingress-tls

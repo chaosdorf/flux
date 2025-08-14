@@ -20,13 +20,13 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
-        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.tls: 'true'
       hosts:
-      - grafana.chaosdorf.space
-      tls:
-      - secretName: grafana-tls
-        hosts:
         - grafana.chaosdorf.space
+      tls:
+        - secretName: grafana-tls
+          hosts:
+            - grafana.chaosdorf.space
     grafana.ini:
       auth.anonymous:
         enabled: true
@@ -51,14 +51,14 @@ spec:
       dashboardproviders.yaml:
         apiVersion: 1
         providers:
-        - name: default
-          orgId: 1
-          folder: ''
-          type: file
-          disableDeletion: false
-          editable: false
-          options:
-            path: /var/lib/grafana/dashboards/default
+          - name: default
+            orgId: 1
+            folder: ''
+            type: file
+            disableDeletion: false
+            editable: false
+            options:
+              path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
         node-exporter-full:

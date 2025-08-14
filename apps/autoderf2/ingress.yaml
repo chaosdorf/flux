@@ -18,5 +18,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - autoderf2.chaosdorf.space
+        - autoderf2.chaosdorf.space
       secretName: ingress-tls

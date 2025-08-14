@@ -19,5 +19,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - stream.hackcenter.chaosdorf.space
+        - stream.hackcenter.chaosdorf.space
       secretName: ingress-tls

@@ -6,7 +6,7 @@ metadata:
     app: beamerstreamer
 spec:
   ports:
-  - name: web
-    port: 80
-    protocol: TCP
-    targetPort: 8080
+    - name: web
+      port: 80
+      protocol: TCP
+      targetPort: 8080

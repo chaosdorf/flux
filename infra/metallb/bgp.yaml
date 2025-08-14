@@ -10,4 +10,4 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: BGPAdvertisement
 metadata:
-  name: bgp 
+  name: bgp

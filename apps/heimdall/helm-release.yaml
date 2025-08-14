@@ -2,44 +2,37 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: heimdall
-
 spec:
   interval: 1h
   install:
     createNamespace: false
-
   chart:
     spec:
       chart: heimdall
       sourceRef:
         kind: HelmRepository
         name: heimdall
-
   values:
     env:
       TZ: Europe/Berlin
-
     ingress:
       main:
         enabled: true
         hosts:
-        - host: start.chaosdorf.space
-          paths:
-          - path: /
-            pathType: Prefix
-            service:
-              port: 80
-
+          - host: start.chaosdorf.space
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: 80
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
-
         tls:
-        - hosts:
-          - start.chaosdorf.space
-          secretName: ingress-tls
-
+          - hosts:
+              - start.chaosdorf.space
+            secretName: ingress-tls
     persistence:
       config:
         enabled: true
-        storageClass: "ceph-filesystem"
+        storageClass: ceph-filesystem
         accessMode: ReadWriteMany

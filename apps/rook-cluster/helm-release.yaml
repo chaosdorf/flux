@@ -54,6 +54,6 @@ spec:
         host:
           name: rook.chaosdorf.space
         tls:
-        - secretName: rook-tls
-          hosts:
-            - rook.chaosdorf.space
+          - secretName: rook-tls
+            hosts:
+              - rook.chaosdorf.space

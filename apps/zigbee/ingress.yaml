@@ -6,17 +6,17 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-  - host: zigbee.chaosdorf.space
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: zigbee
-            port:
-              number: 80
+    - host: zigbee.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: zigbee
+                port:
+                  number: 80
   tls:
-  - secretName: ingress-tls
-    hosts:
-    - zigbee.chaosdorf.space
+    - secretName: ingress-tls
+      hosts:
+        - zigbee.chaosdorf.space

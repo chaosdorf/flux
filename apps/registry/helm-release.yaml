@@ -2,7 +2,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: registry
-
 spec:
   interval: 1h
   chart:
@@ -12,7 +11,6 @@ spec:
         kind: HelmRepository
         name: registry
       interval: 1h
-
   values:
     ingress:
       enabled: true
@@ -20,14 +18,13 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
       hosts:
-      - registry.chaosdorf.space
-      paths:
-      - /
-      tls:
-      - secretName: ingress-tls
-        hosts:
         - registry.chaosdorf.space
-
+      paths:
+        - /
+      tls:
+        - secretName: ingress-tls
+          hosts:
+            - registry.chaosdorf.space
     resources:
       limits:
         cpu: 100m
@@ -35,16 +32,13 @@ spec:
       requests:
         cpu: 10m
         memory: 32Mi
-
     persistence:
       enabled: true
       size: 20Gi
-      storageClass: 'ceph-block'
-
+      storageClass: ceph-block
     metrics:
       enabled: true
       port: 5001
-
     garbageCollect:
       enabled: true
       deleteUntagged: true

@@ -6,17 +6,17 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-  - host: beamerstreamer.chaosdorf.space
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: beamerstreamer
-            port:
-              number: 80
+    - host: beamerstreamer.chaosdorf.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: beamerstreamer
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - beamerstreamer.chaosdorf.space
-    secretName: ingress-tls
+    - hosts:
+        - beamerstreamer.chaosdorf.space
+      secretName: ingress-tls

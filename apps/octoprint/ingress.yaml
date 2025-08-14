@@ -18,5 +18,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - octoprint.chaosdorf.space
+        - octoprint.chaosdorf.space
       secretName: ingress-tls

@@ -12,8 +12,7 @@ spec:
     server: fileserver.chaosdorf.space
     path: /srv/storage
   accessModes:
-  - ReadWriteOnce
----
+    - ReadWriteOnce
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,7 +22,7 @@ metadata:
     volume: data
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   selector:
     matchLabels:
       app: samba-adapter

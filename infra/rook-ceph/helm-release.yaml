@@ -1,4 +1,3 @@
----
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
@@ -61,7 +60,7 @@ spec:
           resource:
             requests:
               cpu: 5m
-      csiCephFSProvisionerResource: |
+      csiCephFSProvisionerResource: |-
         - name : csi-provisioner
           resource:
             requests:

@@ -3,33 +3,31 @@ kind: ConfigMap
 metadata:
   name: samba-adapter
 data:
-  config.yml: |
+  config.yml: |-
     auth:
       - user: foo
         group: foo
         uid: 1000
         gid: 1000
         password: bar
-
     global:
       - "force user = foo"
       - "force group = foo"
       - "server min protocol = NT1"
-
     share:
       - name: public
         comment: Public
         path: /samba/public
-        browsable: yes
-        readonly: no
-        guestok: yes
-        veto: no
-        recycle: yes
+        browsable: true
+        readonly: false
+        guestok: true
+        veto: false
+        recycle: true
       - name: pstwo
         comment: PS2 Share for Games
         path: /samba/public/documents/ps2games
-        browsable: yes
-        readonly: no
-        guestok: yes
-        veto: no
-        recycle: yes
+        browsable: true
+        readonly: false
+        guestok: true
+        veto: false
+        recycle: true
