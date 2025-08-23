@@ -15,7 +15,7 @@ spec:
   values:
     image:
       repository: ghcr.io/9001/copyparty-ac
-      tag: 1.19.0
+      tag: 1.19.5
     ingress:
       enabled: true
       annotations:
@@ -29,14 +29,13 @@ spec:
         - hosts:
             - copyparty.chaosdorf.space
           secretName: ingress-tls
-    command:
-      - python3
-      - /z/copyparty-sfx.py
-      - --no-crt
-      - -c
-      - /z/initcfg
+    args:
       - -v
       - /w::rwmd
+      - --xff-src
+      - lan
+      - --rproxy
+      - -1
     resources:
       limits:
         cpu: '1'
