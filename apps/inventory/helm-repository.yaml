@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: inventory
-spec:
-  url: https://lukasklinger.github.io/inventory
-  interval: 1h
