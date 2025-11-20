@@ -60,7 +60,7 @@ spec:
           resource:
             requests:
               cpu: 5m
-      csiCephFSProvisionerResource: |-
+      csiCephFSProvisionerResource: |
         - name : csi-provisioner
           resource:
             requests:
