@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: HelmRepository
-metadata:
-  name: snowflake
-spec:
-  url: https://lukvm.codeberg.page/helm-tor-snowflake-proxy/
-  interval: 1h

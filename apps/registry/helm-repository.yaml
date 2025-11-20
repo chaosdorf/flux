@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: HelmRepository
-metadata:
-  name: registry
-spec:
-  url: https://helm.twun.io
-  interval: 1h
