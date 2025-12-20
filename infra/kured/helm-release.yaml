@@ -12,3 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kube-reboot
+  values:
+    configuration:
+      forceReboot: true
+      lockTtl: 24h
