@@ -11,4 +11,4 @@ spec:
       chart: metallb
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: metallb
