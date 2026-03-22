@@ -19,18 +19,39 @@ spec:
       main:
         enabled: true
         hosts:
-          - host: start.chaosdorf.space
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  port: 80
+        - host: start.chaosdorf.space
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+        - host: 11880.chaosdorf.space
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+        - host: elf-achtundachtzig-null.chaosdorf.space
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+        - host: elfachtundachtzignull.chaosdorf.space
+          paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         tls:
-          - hosts:
-              - start.chaosdorf.space
-            secretName: ingress-tls
+        - hosts:
+          - start.chaosdorf.space
+          - 11880.chaosdorf.space
+          - elf-achtundachtzig-null.chaosdorf.space
+          - elfachtundachtzignull.chaosdorf.space
+          secretName: ingress-tls
     persistence:
       config:
         enabled: true
