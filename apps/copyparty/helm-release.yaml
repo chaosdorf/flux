@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: copyparty
   values:
-    command: 
+    command: null
     args:
       - -v
       - /w::rwmd
