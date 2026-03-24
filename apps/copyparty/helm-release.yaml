@@ -13,9 +13,14 @@ spec:
         kind: HelmRepository
         name: copyparty
   values:
-    image:
-      repository: ghcr.io/9001/copyparty-ac
-      tag: 1.19.5
+    command: 
+    args:
+      - -v
+      - /w::rwmd
+      - --xff-src
+      - lan
+      - --rproxy
+      - -1
     ingress:
       enabled: true
       annotations:
@@ -29,13 +34,6 @@ spec:
         - hosts:
             - copyparty.chaosdorf.space
           secretName: ingress-tls
-    args:
-      - -v
-      - /w::rwmd
-      - --xff-src
-      - lan
-      - --rproxy
-      - -1
     resources:
       limits:
         cpu: '1'
