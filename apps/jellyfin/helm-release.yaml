@@ -13,8 +13,6 @@ spec:
         kind: HelmRepository
         name: jellyfin
   values:
-    nodeSelector:
-      intel-quick-sync: 'true'
     resources:
       jellyfin:
         requests:
