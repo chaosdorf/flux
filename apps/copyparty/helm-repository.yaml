@@ -1,7 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: copyparty
-spec:
-  url: https://lukasklinger.github.io/copyparty-helm
-  interval: 1h
