@@ -1,0 +1,1 @@
+Permanently moved to https://codeberg.org/Chaosdorf/fleet-infra.
